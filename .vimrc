@@ -114,3 +114,4 @@ call plug#end()
 set laststatus=2
 colorscheme molokai
 map <C-b> :NERDTreeToggle<CR>
+set pastetoggle=<F3>

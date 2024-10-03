@@ -88,6 +88,19 @@ set foldmethod=marker           " detect triple-{ style fold markers
 set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
+
+augroup log_highlighting
+  autocmd!
+  autocmd BufRead,BufNewFile *.log syntax match Timestamp /^\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2},\d\{3}/
+  autocmd BufRead,BufNewFile *.log highlight Timestamp ctermfg=117 guifg=#ADD8E6
+  autocmd BufRead,BufNewFile *.log syntax match ErrorMsg /ERROR/
+  autocmd BufRead,BufNewFile *.log highlight ErrorMsg ctermfg=red guifg=red
+  autocmd BufRead,BufNewFile *.log syntax match WarningMsg /WARNING/
+  autocmd BufRead,BufNewFile *.log highlight WarningMsg ctermfg=yellow guifg=yellow
+  autocmd BufRead,BufNewFile *.log syntax match InfoMsg /INFO/
+  autocmd BufRead,BufNewFile *.log highlight InfoMsg ctermfg=blue guifg=blue
+augroup END
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
